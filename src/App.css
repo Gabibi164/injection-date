@@ -257,3 +257,162 @@
   color: #8a9ab5;
   border-color: #252d42;
 }
+
+/* ── Conflict warning ───────────────────────── */
+.result-card.conflict {
+  border-color: #ff6b4a;
+  box-shadow: 0 8px 40px rgba(255, 107, 74, 0.15);
+}
+
+.conflict-warning {
+  font-size: 13px;
+  font-weight: 600;
+  color: #ff6b4a;
+  margin: 0 0 16px;
+  line-height: 1.4;
+}
+
+/* ── Vacations ──────────────────────────────── */
+.vacation-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.chevron {
+  font-size: 20px;
+  font-weight: 600;
+  color: #3d4a5c;
+  transition: transform 0.2s ease;
+  transform: rotate(0deg);
+}
+
+.chevron.open {
+  transform: rotate(90deg);
+}
+
+.vacation-section {
+  margin-top: 20px;
+}
+
+.vacation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vacation-dates {
+  display: flex;
+  gap: 10px;
+}
+
+.vacation-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vacation-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #3d4a5c;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vacation-input {
+  width: 100%;
+  background: #0d1525;
+  border: 1px solid #1a2438;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  padding: 12px 12px;
+  outline: none;
+  transition: border-color 0.15s;
+  -webkit-appearance: none;
+  appearance: none;
+  color-scheme: dark;
+}
+
+.vacation-input:focus {
+  border-color: #4a9eff;
+}
+
+.vacation-add-btn {
+  background: #0a1f3d;
+  border: 1px solid #1e3a6e;
+  border-radius: 10px;
+  color: #4a9eff;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.vacation-add-btn:active {
+  background: #0d2a4d;
+}
+
+.vacation-add-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.vacation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.vacation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0d1525;
+  border: 1px solid #1a2438;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.vacation-range {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8a9ab5;
+}
+
+.vacation-remove {
+  background: none;
+  border: none;
+  color: #3d4a5c;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.vacation-remove:active {
+  color: #ff6b4a;
+  background: rgba(255, 107, 74, 0.1);
+}
+
+.vacation-empty {
+  font-size: 13px;
+  color: #2a3548;
+  margin: 16px 0 0;
+  text-align: center;
+}
