@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 import './App.css'
 
-const QUICK_WEEKS = [4, 6, 8, 10, 12, 14, 16]
+const QUICK_WEEKS = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 
 const JOURS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
 const MOIS = [
