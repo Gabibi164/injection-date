@@ -1,7 +1,8 @@
 import { useState } from 'react'
+import { useRegisterSW } from 'virtual:pwa-register/react'
 import './App.css'
 
-const QUICK_WEEKS = [1, 2, 3, 4, 6, 8, 10, 12, 14, 16]
+const QUICK_WEEKS = [4, 6, 8, 10, 12, 14, 16]
 
 const JOURS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi']
 const MOIS = [
@@ -28,6 +29,8 @@ export default function App() {
   const [selectedWeeks, setSelectedWeeks] = useState(null)
   const [customWeeks, setCustomWeeks] = useState('')
   const [copied, setCopied] = useState(false)
+
+  const { needRefresh: [needRefresh], updateServiceWorker } = useRegisterSW()
 
   const weeks = selectedWeeks !== null
     ? selectedWeeks
@@ -67,6 +70,13 @@ export default function App() {
 
   return (
     <div className="app">
+      {needRefresh && (
+        <div className="update-banner">
+          <span>Mise à jour disponible</span>
+          <button onClick={() => updateServiceWorker(true)}>Actualiser</button>
+        </div>
+      )}
+
       <div className="header">
         <p className="greeting">Bonjour, Dr. Rumen</p>
         <p className="date-label">Nous sommes le</p>

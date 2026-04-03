@@ -15,16 +15,46 @@
   margin: 0 auto;
 }
 
+/* ── Update banner ───────────────────────────── */
+.update-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0a1f3d;
+  border-bottom: 1px solid #1e3a6e;
+  padding: 12px 28px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #7ab3ff;
+}
+
+.update-banner button {
+  background: #4a9eff;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.update-banner button:active {
+  opacity: 0.8;
+}
+
 /* ── Header ─────────────────────────────────── */
 .header {
   padding: 56px 28px 36px;
 }
 
 .greeting {
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 22px;
+  font-weight: 700;
   color: #4a9eff;
-  letter-spacing: 0.02em;
+  letter-spacing: -0.3px;
   margin: 0 0 20px;
 }
 
@@ -70,7 +100,7 @@
 /* ── Week grid ───────────────────────────────── */
 .quick-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   margin-bottom: 12px;
 }
