@@ -187,18 +187,19 @@ export default function App() {
         </>
       )}
 
-      <div className="divider" style={{ marginTop: 28 }} />
+      <div className="vacation-cta-wrapper">
+        {!showVacations ? (
+          <button className="vacation-cta" onClick={() => setShowVacations(true)}>
+            Clique ici pour ajouter tes vacances
+            {vacations.length > 0 && <span className="vacation-badge">{vacations.length}</span>}
+          </button>
+        ) : (
+          <div className="vacation-panel">
+            <div className="vacation-panel-header">
+              <p className="section-label" style={{ margin: 0 }}>Mes vacances</p>
+              <button className="vacation-close" onClick={() => setShowVacations(false)}>Fermer</button>
+            </div>
 
-      <div className="section">
-        <button className="vacation-toggle" onClick={() => setShowVacations(v => !v)}>
-          <span className="section-label" style={{ margin: 0 }}>
-            Mes vacances{vacations.length > 0 ? ` (${vacations.length})` : ''}
-          </span>
-          <span className={`chevron${showVacations ? ' open' : ''}`}>›</span>
-        </button>
-
-        {showVacations && (
-          <div className="vacation-section">
             <div className="vacation-form">
               <div className="vacation-dates">
                 <div className="vacation-field">

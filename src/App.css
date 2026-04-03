@@ -273,28 +273,72 @@
 }
 
 /* ── Vacations ──────────────────────────────── */
-.vacation-toggle {
+.vacation-cta-wrapper {
+  padding: 28px 28px 0;
+}
+
+.vacation-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  background: #0d1525;
+  border: 1px dashed #1e3a6e;
+  border-radius: 14px;
+  color: #4a9eff;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  letter-spacing: -0.2px;
+}
+
+.vacation-cta:active {
+  background: #0a1f3d;
+  border-color: #4a9eff;
+  transform: scale(0.97);
+}
+
+.vacation-badge {
+  background: #4a9eff;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.vacation-panel {
+  background: #0a1020;
+  border: 1px solid #1a2438;
+  border-radius: 18px;
+  padding: 22px 20px;
+}
+
+.vacation-panel-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  margin-bottom: 20px;
+}
+
+.vacation-close {
   background: none;
   border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-}
-
-.chevron {
-  font-size: 20px;
+  color: #4a9eff;
+  font-size: 13px;
   font-weight: 600;
-  color: #3d4a5c;
-  transition: transform 0.2s ease;
-  transform: rotate(0deg);
-}
-
-.chevron.open {
-  transform: rotate(90deg);
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px 8px;
 }
 
 .vacation-section {
