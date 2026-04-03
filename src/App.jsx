@@ -46,8 +46,7 @@ export default function App() {
   }
 
   function handleCustom(e) {
-    const val = e.target.value
-    setCustomWeeks(val)
+    setCustomWeeks(e.target.value)
     setSelectedWeeks(null)
     setCopied(false)
   }
@@ -69,12 +68,15 @@ export default function App() {
   return (
     <div className="app">
       <div className="header">
-        <p className="label-today">Aujourd'hui</p>
+        <p className="greeting">Bonjour, Dr. Rumen</p>
+        <p className="date-label">Nous sommes le</p>
         <h1 className="today">{formatDate(today)}</h1>
       </div>
 
+      <div className="divider" />
+
       <div className="section">
-        <p className="section-label">Délai entre injections</p>
+        <p className="section-label">Délai entre les injections</p>
         <div className="quick-grid">
           {QUICK_WEEKS.map(w => (
             <button
@@ -82,7 +84,8 @@ export default function App() {
               className={`quick-btn${selectedWeeks === w ? ' active' : ''}`}
               onClick={() => handleQuickSelect(w)}
             >
-              {w} sem.
+              <span className="week-num">{w}</span>
+              <span className="week-unit">sem.</span>
             </button>
           ))}
         </div>
@@ -91,7 +94,7 @@ export default function App() {
           <input
             type="number"
             className="custom-input"
-            placeholder="Autre nombre de semaines..."
+            placeholder="Nombre de semaines personnalisé"
             min="1"
             max="52"
             value={customWeeks}
@@ -101,17 +104,19 @@ export default function App() {
       </div>
 
       {resultDate && (
-        <div className="result-card" onClick={handleCopy}>
-          <p className="result-label">Prochaine injection dans {weeks} sem.</p>
-          <p className="result-date">{resultText}</p>
-          <p className="result-hint">{copied ? '✓ Copié !' : 'Appuyer pour copier'}</p>
-        </div>
-      )}
+        <>
+          <div className="result-card" onClick={handleCopy}>
+            <p className="result-eyebrow">Prochaine injection · {weeks} semaine{weeks > 1 ? 's' : ''}</p>
+            <p className="result-date">{resultText}</p>
+            <div className={`copy-pill${copied ? ' copied' : ''}`}>
+              {copied ? '✓ Copié' : 'Copier la date'}
+            </div>
+          </div>
 
-      {(selectedWeeks !== null || customWeeks !== '') && (
-        <button className="reset-btn" onClick={handleReset}>
-          Recommencer
-        </button>
+          <button className="reset-btn" onClick={handleReset}>
+            Nouveau calcul
+          </button>
+        </>
       )}
     </div>
   )

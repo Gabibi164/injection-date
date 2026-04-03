@@ -5,99 +5,135 @@
 
 .app {
   min-height: 100svh;
-  background: #0f1117;
+  background: #080c14;
   color: #fff;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
   display: flex;
   flex-direction: column;
-  padding: 0 0 40px;
+  padding-bottom: 48px;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
-/* Header */
+/* ── Header ─────────────────────────────────── */
 .header {
-  background: #161b27;
-  padding: 48px 24px 32px;
-  text-align: center;
-  border-bottom: 1px solid #1e2535;
+  padding: 56px 28px 36px;
 }
 
-.label-today {
-  font-size: 13px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.greeting {
+  font-size: 15px;
+  font-weight: 500;
   color: #4a9eff;
+  letter-spacing: 0.02em;
+  margin: 0 0 20px;
+}
+
+.date-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #3d4a5c;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   margin: 0 0 8px;
-  font-weight: 600;
 }
 
 .today {
-  font-size: clamp(22px, 5vw, 28px);
+  font-size: clamp(26px, 6vw, 32px);
   font-weight: 700;
   color: #fff;
   margin: 0;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.6px;
+  line-height: 1.15;
 }
 
-/* Section */
+/* ── Divider ─────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #1a2235 30%, #1a2235 70%, transparent);
+  margin: 0 28px;
+}
+
+/* ── Section ─────────────────────────────────── */
 .section {
-  padding: 28px 20px 0;
+  padding: 32px 28px 0;
 }
 
 .section-label {
-  font-size: 13px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #3d4a5c;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #6b7280;
-  margin: 0 0 16px;
-  font-weight: 600;
+  margin: 0 0 20px;
 }
 
-/* Quick grid */
+/* ── Week grid ───────────────────────────────── */
 .quick-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  margin-bottom: 14px;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .quick-btn {
-  background: #1a2035;
-  border: 1.5px solid #252d42;
-  border-radius: 12px;
-  color: #c9d1e0;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 14px 8px;
+  background: #0d1525;
+  border: 1px solid #1a2438;
+  border-radius: 14px;
+  color: #8a9ab5;
+  padding: 14px 4px;
   cursor: pointer;
-  transition: all 0.15s;
-  line-height: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  transition: all 0.15s ease;
 }
 
 .quick-btn:active {
-  transform: scale(0.95);
+  transform: scale(0.93);
 }
 
 .quick-btn.active {
-  background: #4a9eff;
+  background: #0a1f3d;
   border-color: #4a9eff;
   color: #fff;
-  box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.25);
+  box-shadow: 0 0 0 1px #4a9eff, 0 4px 20px rgba(74, 158, 255, 0.2);
 }
 
-/* Custom input */
+.week-num {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.week-unit {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  opacity: 0.6;
+}
+
+.quick-btn.active .week-unit {
+  opacity: 0.8;
+  color: #7ab3ff;
+}
+
+/* ── Custom input ────────────────────────────── */
 .custom-row {
   margin-top: 4px;
 }
 
 .custom-input {
   width: 100%;
-  background: #1a2035;
-  border: 1.5px solid #252d42;
-  border-radius: 12px;
+  background: #0d1525;
+  border: 1px solid #1a2438;
+  border-radius: 14px;
   color: #fff;
   font-size: 16px;
   font-weight: 500;
-  padding: 14px 16px;
+  font-family: inherit;
+  padding: 16px 18px;
   outline: none;
   transition: border-color 0.15s;
   -webkit-appearance: none;
@@ -105,72 +141,89 @@
 }
 
 .custom-input::placeholder {
-  color: #4b5563;
+  color: #2a3548;
 }
 
 .custom-input:focus {
   border-color: #4a9eff;
+  background: #0a1525;
 }
 
-/* Result */
+/* ── Result card ─────────────────────────────── */
 .result-card {
-  margin: 28px 20px 0;
-  background: linear-gradient(135deg, #1a3a6b 0%, #0f2d5a 100%);
-  border: 1.5px solid #2a4a8a;
-  border-radius: 18px;
-  padding: 28px 24px;
-  text-align: center;
+  margin: 28px 28px 0;
+  background: linear-gradient(145deg, #0a1f3d 0%, #071428 60%, #060e1e 100%);
+  border: 1px solid #1e3a6e;
+  border-radius: 22px;
+  padding: 28px 24px 24px;
   cursor: pointer;
-  transition: transform 0.15s;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   user-select: none;
+  box-shadow: 0 8px 40px rgba(10, 31, 61, 0.6);
 }
 
 .result-card:active {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
-.result-label {
-  font-size: 13px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #7ab3ff;
-  margin: 0 0 12px;
+.result-eyebrow {
+  font-size: 12px;
   font-weight: 600;
+  color: #4a9eff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 14px;
 }
 
 .result-date {
-  font-size: clamp(22px, 6vw, 30px);
+  font-size: clamp(24px, 6vw, 30px);
   font-weight: 800;
   color: #fff;
-  margin: 0 0 14px;
-  letter-spacing: -0.5px;
+  margin: 0 0 20px;
+  letter-spacing: -0.6px;
   line-height: 1.2;
 }
 
-.result-hint {
-  font-size: 13px;
+.copy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(74, 158, 255, 0.12);
+  border: 1px solid rgba(74, 158, 255, 0.25);
+  border-radius: 100px;
   color: #4a9eff;
-  margin: 0;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 16px;
+  transition: all 0.2s ease;
 }
 
-/* Reset */
+.copy-pill.copied {
+  background: rgba(52, 199, 89, 0.12);
+  border-color: rgba(52, 199, 89, 0.3);
+  color: #34c759;
+}
+
+/* ── Reset ───────────────────────────────────── */
 .reset-btn {
   display: block;
-  margin: 20px 20px 0;
-  width: calc(100% - 40px);
+  margin: 14px 28px 0;
+  width: calc(100% - 56px);
   background: transparent;
-  border: 1.5px solid #252d42;
-  border-radius: 12px;
-  color: #6b7280;
-  font-size: 15px;
+  border: 1px solid #1a2438;
+  border-radius: 14px;
+  color: #3d4a5c;
+  font-size: 14px;
   font-weight: 600;
-  padding: 14px;
+  font-family: inherit;
+  padding: 15px;
   cursor: pointer;
   transition: all 0.15s;
+  letter-spacing: 0.02em;
 }
 
 .reset-btn:active {
-  background: #1a2035;
-  color: #c9d1e0;
+  background: #0d1525;
+  color: #8a9ab5;
+  border-color: #252d42;
 }
