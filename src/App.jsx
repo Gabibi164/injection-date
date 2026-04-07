@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useRegisterSW } from 'virtual:pwa-register/react'
+import { addWeeks, startOfDay, endOfDay, parseDateString, findVacationConflict } from './dateUtils'
 import './App.css'
 
 /* ── Constantes ──────────────────────────────── */
@@ -33,11 +34,6 @@ function formatShortDate(date) {
   return `${date.getDate()} ${MOIS[date.getMonth()]}`
 }
 
-function addWeeks(date, weeks) {
-  const result = new Date(date)
-  result.setDate(result.getDate() + weeks * 7)
-  return result
-}
 
 function toDateString(date) {
   const y = date.getFullYear()
@@ -53,16 +49,6 @@ function loadVacations() {
   } catch { return [] }
 }
 
-function findVacationConflict(date, vacations) {
-  if (!date) return null
-  const t = date.getTime()
-  for (const v of vacations) {
-    const start = new Date(v.start + 'T00:00:00')
-    const end = new Date(v.end + 'T23:59:59')
-    if (t >= start.getTime() && t <= end.getTime()) return v
-  }
-  return null
-}
 
 /* ── Formule SRK/T ───────────────────────────── */
 
@@ -112,8 +98,21 @@ function calculateSRKT(AL, K, Aconst, targetRef) {
 /* ── App ─────────────────────────────────────── */
 
 export default function App() {
-  const today = new Date()
+  const [now, setNow] = useState(() => new Date())
+  const today = now
   const [activeTab, setActiveTab] = useState('injection')
+
+  // Rafraîchit automatiquement la date courante (utile si l'app reste ouverte longtemps)
+  useEffect(() => {
+    const tick = () => setNow(new Date())
+    const interval = setInterval(tick, 60_000)
+    const onVisible = () => { if (!document.hidden) tick() }
+    document.addEventListener('visibilitychange', onVisible)
+    return () => {
+      clearInterval(interval)
+      document.removeEventListener('visibilitychange', onVisible)
+    }
+  }, [])
 
   // Injection state
   const [injectionCount, setInjectionCount] = useState(null)
