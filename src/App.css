@@ -10,7 +10,7 @@
   font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
   display: flex;
   flex-direction: column;
-  padding-bottom: 90px;
+  padding-bottom: 48px;
   max-width: 480px;
   margin: 0 auto;
 }
