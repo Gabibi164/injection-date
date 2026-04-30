@@ -373,21 +373,11 @@ function AmslerView() {
       <div className="amsler-header">
         <p className="amsler-eyebrow">Test de dépistage</p>
         <h1 className="amsler-title">Grille d'Amsler</h1>
-        <p className="amsler-instructions">
-          Tenir l'écran à <strong>30 cm</strong>, avec votre correction de près.
-          Couvrir un œil, fixer le point central, et signaler toute ligne
-          ondulée, déformée ou zone manquante.
-        </p>
       </div>
 
       <div className="amsler-grid-wrap">
         <AmslerGrid />
       </div>
-
-      <p className="amsler-footnote">
-        Répéter l'opération avec l'autre œil. En cas d'anomalie nouvelle, prendre
-        contact avec votre ophtalmologiste rapidement.
-      </p>
     </>
   )
 }
