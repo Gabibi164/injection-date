@@ -40,6 +40,7 @@ function loadVacations() {
 /* ── App ─────────────────────────────────────── */
 
 export default function App() {
+  const [view, setView] = useState('planning')
   const [now, setNow] = useState(() => new Date())
   const today = now
 
@@ -144,7 +145,7 @@ export default function App() {
   /* ── Render ────────────────────────────────── */
 
   return (
-    <div className="app">
+    <div className={`app${view === 'amsler' ? ' app-light' : ''}`}>
       {needRefresh && (
         <div className="update-banner">
           <span>Mise à jour disponible</span>
@@ -152,6 +153,54 @@ export default function App() {
         </div>
       )}
 
+      {view === 'amsler' ? (
+        <AmslerView />
+      ) : (
+        <PlanningView
+          today={today}
+          formatDate={formatDate}
+          formatShortDate={formatShortDate}
+          toDateString={toDateString}
+          injectionCount={injectionCount}
+          step={step}
+          weeksList={weeksList}
+          scheduledDates={scheduledDates}
+          count={count}
+          copied={copied}
+          showVacations={showVacations}
+          setShowVacations={setShowVacations}
+          vacations={vacations}
+          vacStart={vacStart}
+          vacEnd={vacEnd}
+          setVacStart={setVacStart}
+          setVacEnd={setVacEnd}
+          handleCountSelect={handleCountSelect}
+          handleSetWeek={handleSetWeek}
+          handleBack={handleBack}
+          handleCopy={handleCopy}
+          handleReset={handleReset}
+          handleAddVacation={handleAddVacation}
+          handleRemoveVacation={handleRemoveVacation}
+        />
+      )}
+
+      <TabBar view={view} setView={setView} />
+    </div>
+  )
+}
+
+/* ── PlanningView ────────────────────────────── */
+
+function PlanningView({
+  today, formatDate, formatShortDate, toDateString,
+  injectionCount, step, weeksList, scheduledDates, count, copied,
+  showVacations, setShowVacations, vacations, vacStart, vacEnd,
+  setVacStart, setVacEnd,
+  handleCountSelect, handleSetWeek, handleBack, handleCopy, handleReset,
+  handleAddVacation, handleRemoveVacation
+}) {
+  return (
+    <>
       <div className="header">
         <p className="greeting">Bonjour, Dr. Rumen</p>
         <p className="date-label">Nous sommes le</p>
@@ -192,13 +241,15 @@ export default function App() {
           {step >= 1 && step <= (injectionCount || 0) && (() => {
             const idx = step - 1
             const w = weeksList[idx]
-            const suffix = (n) => n === 1 ? 'ʳᵉ' : 'ᵉ'
+            const ordinal = (n) => n === 1
+              ? <>1<sup>ère</sup></>
+              : <>{n}<sup>e</sup></>
             return (
               <div className="section wizard-step" key={idx}>
                 <p className="wizard-question">
                   {idx === 0
-                    ? <>Délai avant la <strong>1ʳᵉ injection</strong> ?</>
-                    : <>Délai entre la <strong>{idx}{suffix(idx)}</strong> et la <strong>{idx + 1}{suffix(idx + 1)} injection</strong> ?</>}
+                    ? <>Délai avant la <strong>{ordinal(1)} injection</strong> ?</>
+                    : <>Délai entre la <strong>{ordinal(idx)}</strong> et la <strong>{ordinal(idx + 1)} injection</strong> ?</>}
                 </p>
                 <div className="quick-grid">
                   {QUICK_WEEKS.map(weekVal => (
@@ -310,6 +361,91 @@ export default function App() {
           </div>
         )}
       </div>
-    </div>
+    </>
+  )
+}
+
+/* ── AmslerView ──────────────────────────────── */
+
+function AmslerView() {
+  return (
+    <>
+      <div className="amsler-header">
+        <p className="amsler-eyebrow">Test de dépistage</p>
+        <h1 className="amsler-title">Grille d'Amsler</h1>
+        <p className="amsler-instructions">
+          Tenir l'écran à <strong>30 cm</strong>, avec votre correction de près.
+          Couvrir un œil, fixer le point central, et signaler toute ligne
+          ondulée, déformée ou zone manquante.
+        </p>
+      </div>
+
+      <div className="amsler-grid-wrap">
+        <AmslerGrid />
+      </div>
+
+      <p className="amsler-footnote">
+        Répéter l'opération avec l'autre œil. En cas d'anomalie nouvelle, prendre
+        contact avec votre ophtalmologiste rapidement.
+      </p>
+    </>
+  )
+}
+
+function AmslerGrid() {
+  const cells = 20
+  const cell = 20
+  const total = cells * cell
+  const center = total / 2
+
+  const lines = []
+  for (let i = 0; i <= cells; i++) {
+    const p = i * cell
+    lines.push(<line key={`v${i}`} x1={p} y1={0} x2={p} y2={total} />)
+    lines.push(<line key={`h${i}`} x1={0} y1={p} x2={total} y2={p} />)
+  }
+
+  return (
+    <svg
+      className="amsler-grid"
+      viewBox={`-1 -1 ${total + 2} ${total + 2}`}
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Grille d'Amsler"
+    >
+      <rect x="0" y="0" width={total} height={total} fill="#fff" />
+      <g stroke="#000" strokeWidth="1">{lines}</g>
+      <rect x="0" y="0" width={total} height={total} fill="none" stroke="#000" strokeWidth="2" />
+      <circle cx={center} cy={center} r="3.5" fill="#000" />
+    </svg>
+  )
+}
+
+/* ── TabBar ──────────────────────────────────── */
+
+function TabBar({ view, setView }) {
+  return (
+    <nav className="tab-bar">
+      <button
+        className={`tab${view === 'planning' ? ' active' : ''}`}
+        onClick={() => setView('planning')}
+      >
+        <svg className="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="4" width="18" height="18" rx="2" />
+          <path d="M16 2v4M8 2v4M3 10h18" />
+        </svg>
+        Planning
+      </button>
+      <button
+        className={`tab${view === 'amsler' ? ' active' : ''}`}
+        onClick={() => setView('amsler')}
+      >
+        <svg className="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="1" />
+          <path d="M9 3v18M15 3v18M3 9h18M3 15h18" />
+        </svg>
+        Amsler
+      </button>
+    </nav>
   )
 }

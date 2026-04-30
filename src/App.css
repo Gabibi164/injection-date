@@ -10,9 +10,14 @@
   font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
   display: flex;
   flex-direction: column;
-  padding-bottom: 48px;
+  padding-bottom: 88px;
   max-width: 480px;
   margin: 0 auto;
+}
+
+.app-light {
+  background: #fff;
+  color: #1a1a1a;
 }
 
 /* ── Update banner ───────────────────────────── */
@@ -515,6 +520,14 @@
   font-weight: 700;
 }
 
+.wizard-question sup {
+  font-size: 0.55em;
+  font-weight: 700;
+  vertical-align: super;
+  margin-left: 1px;
+  line-height: 0;
+}
+
 .wizard-step .quick-grid,
 .wizard-step .count-grid {
   max-width: 360px;
@@ -719,6 +732,79 @@
 .tab-icon {
   width: 22px;
   height: 22px;
+}
+
+.app-light .tab-bar {
+  background: #fff;
+  border-top: 1px solid #e5e7eb;
+}
+
+.app-light .tab {
+  color: #9ca3af;
+}
+
+.app-light .tab.active {
+  color: #2563eb;
+}
+
+/* ── Amsler page ────────────────────────────── */
+.amsler-header {
+  padding: 36px 28px 20px;
+  text-align: center;
+}
+
+.amsler-eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 8px;
+}
+
+.amsler-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 16px;
+  letter-spacing: -0.6px;
+}
+
+.amsler-instructions {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4b5563;
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 360px;
+}
+
+.amsler-instructions strong {
+  color: #111827;
+  font-weight: 700;
+}
+
+.amsler-grid-wrap {
+  padding: 8px 16px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.amsler-grid {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  background: #fff;
+}
+
+.amsler-footnote {
+  font-size: 12px;
+  color: #6b7280;
+  font-style: italic;
+  text-align: center;
+  margin: 8px 28px 0;
+  line-height: 1.5;
 }
 
 /* ── IOL Calculator ─────────────────────────── */
